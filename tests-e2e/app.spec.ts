@@ -12,6 +12,11 @@ test.describe("main page", () => {
   test("has canvas with three.js engine", async ({ page }) => {
     await expectThreeCanvas({ page });
   });
+
+  test("renders scene @visual", async ({ page }) => {
+    await expectThreeCanvas({ page });
+    await expect(page).toHaveScreenshot();
+  });
 });
 
 async function expectThreeCanvas({ page }: { page: Page }): Promise<void> {
