@@ -1,0 +1,22 @@
+---
+import '../styles/normalize.css';
+import '../styles/index.css';
+
+type Props = {
+  title?: string
+}
+
+const title = Astro.props.title ? `tsl-visual-testing - ${Astro.props.title}` : 'tsl-visual-testing';
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot/>
+	</body>
+</html>
