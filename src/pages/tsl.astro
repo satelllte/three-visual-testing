@@ -1,8 +1,8 @@
 ---
-import { SceneTsl } from "../components/SceneTsl";
+import { Scene } from "../components/Scene";
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="webgpu">
-  <SceneTsl client:only/>
+  <Scene client:only engine="webgpu"/>
 </Layout>
