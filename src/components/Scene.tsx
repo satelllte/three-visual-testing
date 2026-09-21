@@ -1,4 +1,3 @@
-// import "./r3f-extend";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
