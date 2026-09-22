@@ -1,53 +1,46 @@
-import { expect, type Page, test } from "@playwright/test";
+import { expect, type Locator, test } from "@playwright/test";
 
 const BASE_URL = "http://localhost:4321/three-visual-testing";
 
-test.describe("webgl page", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE_URL}/`);
-  });
-
-  test("has title", async ({ page }) => {
-    await expect(page).toHaveTitle("three-visual-testing - webgl");
-  });
-
-  test("has canvas with three.js webgl engine", async ({ page }) => {
-    await expectThreeCanvas({ page, engine: "webgl" });
-  });
-
-  test("renders scene @visual", async ({ page }) => {
-    await expectThreeCanvas({ page });
-    await expect(page).toHaveScreenshot();
-  });
+test.beforeEach(async ({ page }) => {
+  await page.goto(`${BASE_URL}/`);
 });
 
-test.describe("webgpu page", () => {
-  test.beforeEach(async ({ page }) => {
-    await page.goto(`${BASE_URL}/tsl`);
-  });
+test("has title", async ({ page }) => {
+  await expect(page).toHaveTitle("three-visual-testing");
+});
 
-  test("has title", async ({ page }) => {
-    await expect(page).toHaveTitle("three-visual-testing - webgpu");
-  });
+test("has 2 scenes", async ({ page }) => {
+  await expect(page.locator(".scene")).toHaveCount(2);
 
-  test("has canvas with three.js webgpu engine", async ({ page }) => {
-    await expectThreeCanvas({ page, engine: "webgpu" });
-  });
+  const sceneWebGL = page.locator(".scene").nth(0);
+  const sceneWebGPU = page.locator(".scene").nth(1);
 
-  test("renders scene @visual", async ({ page }) => {
-    await expectThreeCanvas({ page, engine: "webgpu" });
-    await expect(page).toHaveScreenshot();
-  });
+  await expect(sceneWebGL).toMatchAriaSnapshot();
+  await expect(sceneWebGPU).toMatchAriaSnapshot();
+
+  await expectThreeCanvas({ locator: sceneWebGL, engine: "webgl" });
+  await expectThreeCanvas({ locator: sceneWebGPU, engine: "webgpu" });
+});
+
+test("renders scenes @visual", async ({ page }) => {
+  const sceneWebGL = page.locator(".scene").nth(0);
+  const sceneWebGPU = page.locator(".scene").nth(1);
+
+  await expectThreeCanvas({ locator: sceneWebGL, engine: "webgl" });
+  await expectThreeCanvas({ locator: sceneWebGPU, engine: "webgpu" });
+
+  await expect(page).toHaveScreenshot();
 });
 
 async function expectThreeCanvas({
-  page,
+  locator,
   engine = "webgl",
 }: {
-  page: Page;
+  locator: Locator;
   engine?: "webgl" | "webgpu";
 }): Promise<void> {
-  const canvas = page.locator("canvas[data-engine]");
+  const canvas = locator.locator("canvas[data-engine]");
   await expect(canvas).toBeVisible();
 
   const engineAttr = await canvas.evaluate((element) =>

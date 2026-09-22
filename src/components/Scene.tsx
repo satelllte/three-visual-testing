@@ -18,13 +18,11 @@ function getGl(engine: SceneProps["engine"]) {
 
 export function Scene({ engine }: SceneProps) {
   return (
-    <div className="container">
-      <Canvas camera={{ position: [2.5, 2.5, 5.0] }} gl={getGl(engine)}>
-        <OrbitControls enableZoom={false} enablePan={false} />
-        <ambientLight />
-        <Box engine={engine} />
-      </Canvas>
-    </div>
+    <Canvas camera={{ position: [2.5, 2.5, 5.0] }} gl={getGl(engine)}>
+      <OrbitControls enableZoom={false} enablePan={false} />
+      <ambientLight />
+      <Box engine={engine} />
+    </Canvas>
   );
 }
 

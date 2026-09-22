@@ -2,6 +2,13 @@
 
 A demonstration of Three.js visual regression testing with Playwright.
 
+<img alt="scene preview" src="./docs/frame.png" />
+
+## Features
+
+- 📸 Cross-platform screenshots
+- 🌌 WebGL & WebGPU renderers
+
 ## Development
 
 Install dependencies:
@@ -40,3 +47,26 @@ pnpm test:e2e
 > More details:
 > - [Playwright docs / Continuous Integration / Containers](https://playwright.dev/docs/ci#via-containers)
 > - [Playwright docs / Docker](https://playwright.dev/docs/docker)
+
+## Determinism
+
+When testing real scenes, it's important to make sure that they are deterministic static frames. Check out some approaches from the real-world example - [satelllte/kinect-stretch](https://github.com/satelllte/kinect-stretch):
+
+### Entry point
+
+- [src/pages/static.astro](https://github.com/satelllte/kinect-stretch/blob/main/src/pages/static.astro)
+- [src/components/Scene.tsx](https://github.com/satelllte/kinect-stretch/blob/main/src/components/Scene.tsx)
+
+> Passes `[isStatic=true]` property to the `Scene` component, which disables `OrbitControls` and also passes the props down to the rest of "dynamic" components.
+
+### Post processing lock
+
+- [src/components/PostProcessing.tsx](https://github.com/satelllte/kinect-stretch/blob/main/src/components/PostProcessing.tsx)
+
+> When `[isStatic=true]`, it locks the randomization of the uniforms on "stretch pass" effect.
+
+### Video texture lock
+
+- [src/components/KinectPoints.tsx](https://github.com/satelllte/kinect-stretch/blob/main/src/components/KinectPoints.tsx)
+
+> When `[isStatic=true]`, it doesn't play the video texture, and locks it on a single frame parametrized by `videoCurrentTime` query parameter (that can be passed directly from an end-to-end test).
