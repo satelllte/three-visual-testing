@@ -1,8 +1,10 @@
 import { expect, type Page, test } from "@playwright/test";
 
+const BASE_URL = "http://localhost:4321/three-visual-testing";
+
 test.describe("webgl page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:4321/");
+    await page.goto(`${BASE_URL}/`);
   });
 
   test("has title", async ({ page }) => {
@@ -21,7 +23,7 @@ test.describe("webgl page", () => {
 
 test.describe("webgpu page", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:4321/tsl");
+    await page.goto(`${BASE_URL}/tsl`);
   });
 
   test("has title", async ({ page }) => {
