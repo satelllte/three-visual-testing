@@ -1,6 +1,6 @@
 # three-visual-testing
 
-Three.js TSL scene visual regression testing via Playwright.
+A demonstration of Three.js visual regression testing with Playwright.
 
 ## Get started
 
