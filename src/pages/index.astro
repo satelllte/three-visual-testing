@@ -1,8 +1,8 @@
 ---
-import { Scene } from "../components/Scene";
+import { Scenes } from "../components/Scenes";
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="webgl">
-  <Scene client:only engine="webgl"/>
+<Layout>
+  <Scenes client:only/>
 </Layout>
