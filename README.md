@@ -54,20 +54,19 @@ When testing real scenes, it's important to make sure that they are deterministi
 
 ### Entry point
 
-https://github.com/satelllte/kinect-stretch/blob/main/src/pages/static.astro
-
-https://github.com/satelllte/kinect-stretch/blob/main/src/components/Scene.tsx
+- [src/pages/static.astro](https://github.com/satelllte/kinect-stretch/blob/main/src/pages/static.astro)
+- [src/components/Scene.tsx](https://github.com/satelllte/kinect-stretch/blob/main/src/components/Scene.tsx)
 
 > Passes `[isStatic=true]` property to the `Scene` component, which disables `OrbitControls` and also passes the props down to the rest of "dynamic" components.
 
 ### Post processing lock
 
-https://github.com/satelllte/kinect-stretch/blob/main/src/components/PostProcessing.tsx
+- [src/components/PostProcessing.tsx](https://github.com/satelllte/kinect-stretch/blob/main/src/components/PostProcessing.tsx)
 
 > When `[isStatic=true]`, it locks the randomization of the uniforms on "stretch pass" effect.
 
 ### Video texture lock
 
-https://github.com/satelllte/kinect-stretch/blob/main/src/components/KinectPoints.tsx
+- [src/components/KinectPoints.tsx](https://github.com/satelllte/kinect-stretch/blob/main/src/components/KinectPoints.tsx)
 
 > When `[isStatic=true]`, it doesn't play the video texture, and locks it on a single frame parametrized by `videoCurrentTime` query parameter (that can be passed directly from an end-to-end test).
