@@ -6,7 +6,7 @@ test.describe("webgl page", () => {
   });
 
   test("has title", async ({ page }) => {
-    await expect(page).toHaveTitle("tsl-visual-testing - webgl");
+    await expect(page).toHaveTitle("three-visual-testing - webgl");
   });
 
   test("has canvas with three.js webgl engine", async ({ page }) => {
@@ -25,7 +25,7 @@ test.describe("webgpu page", () => {
   });
 
   test("has title", async ({ page }) => {
-    await expect(page).toHaveTitle("tsl-visual-testing - webgpu");
+    await expect(page).toHaveTitle("three-visual-testing - webgpu");
   });
 
   test("has canvas with three.js webgpu engine", async ({ page }) => {
