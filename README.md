@@ -2,6 +2,13 @@
 
 A demonstration of Three.js visual regression testing with Playwright.
 
+<img alt="scene preview" src="./docs/frame.png" />
+
+## Features
+
+- 📸 Cross-platform screenshots
+- 🌌 WebGL & WebGPU renderers
+
 ## Development
 
 Install dependencies:
