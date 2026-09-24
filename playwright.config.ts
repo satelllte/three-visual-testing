@@ -70,7 +70,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: "pnpm preview",
+    command: "exec node node_modules/astro/bin/astro.mjs preview",
     url: "http://localhost:4321/three-visual-testing",
     reuseExistingServer: !process.env.CI,
   },
