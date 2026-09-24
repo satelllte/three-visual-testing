@@ -42,7 +42,7 @@ pnpm test:e2e
 ```
 
 > [!WARNING]  
-> The `pnpm test:e2e` example was made on macOS (Darwin), which means that the screenshot tests will fail for other operating systems due to low-level rendering differences between them. To update the snapshots for CI (Linux), run `pnpm test:e2e:docker`. After running it, you may also need to re-run `pnpm install` to continue working normally on the project.
+> The `pnpm test:e2e` example was made on macOS (Darwin), which means that the screenshot tests will fail for other operating systems due to low-level rendering differences between them. To update the snapshots for CI (Linux), run `pnpm test:e2e:docker`.
 >
 > More details:
 > - [Playwright docs / Continuous Integration / Containers](https://playwright.dev/docs/ci#via-containers)
