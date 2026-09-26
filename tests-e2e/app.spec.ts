@@ -10,7 +10,9 @@ test("has title", async ({ page }) => {
   await expect(page).toHaveTitle("three-visual-testing");
 });
 
-test("has 2 scenes", async ({ page }) => {
+test("has 2 scenes", async ({ page, browserName }) => {
+  skipIfUnsupported({ browserName });
+
   await expect(page.locator(".scene")).toHaveCount(2);
 
   const sceneWebGL = page.locator(".scene").nth(0);
@@ -23,7 +25,9 @@ test("has 2 scenes", async ({ page }) => {
   await expectThreeCanvas({ locator: sceneWebGPU, engine: "webgpu" });
 });
 
-test("renders scenes @visual", async ({ page }) => {
+test("renders scenes @visual", async ({ page, browserName }) => {
+  skipIfUnsupported({ browserName });
+
   const sceneWebGL = page.locator(".scene").nth(0);
   const sceneWebGPU = page.locator(".scene").nth(1);
 
@@ -51,4 +55,11 @@ async function expectThreeCanvas({
   } else {
     await expect(engineAttr).toBe("three.js r186 webgpu");
   }
+}
+
+function skipIfUnsupported({ browserName }: { browserName: string }): void {
+  test.skip(
+    browserName === "firefox" && process.platform === "linux",
+    "Headless Firefox on Linux has no WebGL context",
+  );
 }
