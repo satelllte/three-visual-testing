@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-IMAGE="mcr.microsoft.com/playwright:v1.63.0-noble"
+docker build -t three-visual-testing-e2e .
 
-docker run --rm --ipc=host \
-  -u "$(id -u):$(id -g)" \
-  -e HOME=/tmp \
-  -v "$(pwd)":/work \
-  -w /work \
-  "$IMAGE" \
+docker run --rm --init --ipc=host \
+  -v "$(pwd)/tests-e2e:/app/tests-e2e" \
+  -v "$(pwd)/test-results:/app/test-results" \
+  -v "$(pwd)/playwright-report:/app/playwright-report" \
+  three-visual-testing-e2e \
   /bin/bash -c '
-    wget -qO- https://get.pnpm.io/install.sh | env ENV="$HOME/.bashrc" SHELL="$(which bash)" bash -
-    source "$HOME/.bashrc"
-    pnpm install --frozen-lockfile
-    pnpm build
     pnpm test:e2e "$@"
   ' bash "$@"
