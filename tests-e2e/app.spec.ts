@@ -42,7 +42,7 @@ async function expectThreeCanvas({
   engine = "webgl",
 }: {
   locator: Locator;
-  engine?: "webgl" | "webgpu";
+  engine: "webgl" | "webgpu";
 }): Promise<void> {
   const canvas = locator.locator("canvas[data-engine]");
   await expect(canvas).toBeVisible();
