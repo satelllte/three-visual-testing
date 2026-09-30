@@ -4,6 +4,9 @@ A demonstration of Three.js visual regression testing with Playwright.
 
 <img alt="scene preview" src="./docs/frame.png" />
 
+> [!NOTE]
+> Read the full write-up: **[Visual Regression Testing for Three.js Scenes](https://satelllte.pages.dev/articles/visual-regression-testing-for-threejs-scenes/)** — it walks through the approach behind this repo in detail.
+
 ## Features
 
 - 📸 Cross-platform screenshots
